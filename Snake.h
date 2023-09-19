@@ -1,8 +1,10 @@
-#include "Position.h"
 #include "List.h"
+#include "Position.h"
 
 template <class T>
 class Snake : public List <Position*> {
+    private:
+        bool grew = false;
     public:
         Snake(Position* info){ // instantiate with board position
             info->setPositionType(PositionType::SNAKE_PART);
@@ -16,15 +18,19 @@ class Snake : public List <Position*> {
 
         void move(Position* info){
             Position* tail = List <Position*> :: removeLast();
-            tail->setPositionType(PositionType::EMPTY);
+            if(grew == false) tail->setPositionType(PositionType::EMPTY);
+            else grew = false;
             info->setPositionType(PositionType::SNAKE_PART);
             List<Position*>::addFirst(info);            
         }
 
         void grow(Position* info){
+            grew = true;
             List<Position*>::add(info);
         }
-
+        Position *getHead(){
+            return List<Position*>::head;
+        }
         void print(){
             Node <Position*> *current = head;
             while(current != nullptr){

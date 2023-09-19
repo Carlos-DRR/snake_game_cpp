@@ -1,36 +1,33 @@
 #include <iostream>
-#include "Snake.h"
-
+//#include "Snake.h"
+//#include "Board.h"
+#include "Game.h"
 using namespace std;
 
 int main(){
-    Position *p1 = new Position(0, 0, PositionType::EMPTY);
-    Position *p2 = new Position(0, 1, PositionType::EMPTY);
-    Position *p3 = new Position(0, 2, PositionType::EMPTY);
-    Position *p4 = new Position(0, 3, PositionType::UPGRADE);
-    Position *p5 = new Position(0, 4, PositionType::EMPTY);
-    Position *p6 = new Position(0, 5, PositionType::EMPTY);
-    Snake<Position*> *lista = new Snake<Position*>(p1);
-    lista->move(p2);
+    /*
+    Board *b = new Board();
+    Snake<Position*> *lista = new Snake<Position*>(b->getBoardPosition(0, 0));
+    lista->move(b->getBoardPosition(0, 1));
     cout << "move pra direita:" << endl;
-    lista->print();
-    lista->printHeadAndTail();
+    b->print();
     cout << "move pra direita:" << endl;
-    lista->move(p3);
-    lista->print();
-    lista->printHeadAndTail();
+    lista->move(b->getBoardPosition(0, 2));
+    b->print();
     cout << "move upgrade:" << endl;
-    lista->move(p4);
-    lista->grow(p4);
-    lista->print();
-    lista->printHeadAndTail();
+    lista->move(b->getBoardPosition(0, 3));
+    lista->grow(b->getBoardPosition(0, 3));
+    b->print();
     cout << "move pra direita:" << endl;
-    lista->move(p5);
+    lista->move(b->getBoardPosition(0, 4));
     lista->print();
-    lista->printHeadAndTail();
+    b->print();
     cout << "move pra direita:" << endl;
-    lista->move(p6);
-    lista->print();
-    cout << p4->toString();
+    lista->move(b->getBoardPosition(0, 5));
+    b->print();
+    */
+    Game *game = new Game();
+    game->update();
+    system("pause");
     return 0;
 }

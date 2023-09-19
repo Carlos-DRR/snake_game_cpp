@@ -1,6 +1,7 @@
+#ifndef POSITION_H
+#define POSITION_H
 #include "PositionType.h"
 #include <string>
-#include <iostream>
 
 class Position{
     private:
@@ -8,6 +9,9 @@ class Position{
         int column;
         PositionType positionType;
     public:
+        Position (){
+            
+        }
         Position(int row, int column, PositionType positionType){
             this->row = row;
             this->column = column;
@@ -37,3 +41,4 @@ class Position{
         }
 
 };
+#endif
