@@ -4,7 +4,7 @@
 template <class T>
 
 class List{
-    private:
+    protected:
         Node <T> * head;
         Node <T> * tail;
         int size;
@@ -18,8 +18,22 @@ class List{
         bool empty(){
             return size == 0;
         }
+        int getSize(){
+            return size;
+        }
         T getHead(){
             return head->getInfo();
+        }
+        void addFirst(T info){
+            Node<T> *node = new Node<T>(info);//next is null in constructor
+            if(empty()){
+                head = node;
+                tail = node;
+            }else{
+                node->setNext(head);
+                head = node;
+            }   
+            size += 1;
         }
         void add(T info){
             Node <T> *node = new Node<T>(info);//next is null in constructor
@@ -48,6 +62,7 @@ class List{
                     tail = nullptr;
                 }else{
                     previous->setNext(current->getNext());
+                    tail = previous;
                 }
                 delete current;
                 

@@ -1,6 +1,7 @@
 #include "PositionType.h"
 #include <string>
 #include <iostream>
+
 class Position{
     private:
         int row;

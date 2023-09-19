@@ -1,18 +1,35 @@
 #include <iostream>
-#include "List.h"
-#include "Position.h"
+#include "Snake.h"
 
 using namespace std;
 
 int main(){
-    List<Position*> *lista = new List<Position*>();
     Position *p1 = new Position(0, 0, PositionType::EMPTY);
-    Position *p2 = new Position(1, 2, PositionType::SNAKE_PART);
-    Position *p3 = new Position(1, 2, PositionType::UPGRADE);
-    lista->add(p1);
-    lista->add(p2);
-    lista->add(p3);
-    cout << lista->getHead()->toString() << endl;
-    cout << lista->removeLast()->toString() << endl;
+    Position *p2 = new Position(0, 1, PositionType::EMPTY);
+    Position *p3 = new Position(0, 2, PositionType::EMPTY);
+    Position *p4 = new Position(0, 3, PositionType::UPGRADE);
+    Position *p5 = new Position(0, 4, PositionType::EMPTY);
+    Position *p6 = new Position(0, 5, PositionType::EMPTY);
+    Snake<Position*> *lista = new Snake<Position*>(p1);
+    lista->move(p2);
+    cout << "move pra direita:" << endl;
+    lista->print();
+    lista->printHeadAndTail();
+    cout << "move pra direita:" << endl;
+    lista->move(p3);
+    lista->print();
+    lista->printHeadAndTail();
+    cout << "move upgrade:" << endl;
+    lista->move(p4);
+    lista->grow(p4);
+    lista->print();
+    lista->printHeadAndTail();
+    cout << "move pra direita:" << endl;
+    lista->move(p5);
+    lista->print();
+    lista->printHeadAndTail();
+    cout << "move pra direita:" << endl;
+    lista->move(p6);
+    lista->print();
     return 0;
 }
