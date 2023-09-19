@@ -13,11 +13,11 @@ class Snake : public List <Position*>{
             Position* tail = List <Position*> :: removeLast();
             tail->setPositionType(PositionType::EMPTY);
             info->setPositionType(PositionType::SNAKE_PART);
-            List<Position*> add(info);            
+            List<Position*>::add(info);            
         }
 
-        void grow(){
-            
+        void grow(Position* info){
+            List<Position*>::add(info);
         }
         
 
