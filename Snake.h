@@ -22,7 +22,6 @@ class Snake : public List <Position*> {
         }
 
         void grow(Position* info){
-            info->setPositionType(PositionType::SNAKE_PART);
             List<Position*>::add(info);
         }
 

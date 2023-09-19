@@ -31,5 +31,6 @@ int main(){
     cout << "move pra direita:" << endl;
     lista->move(p6);
     lista->print();
+    cout << p4->toString();
     return 0;
 }
