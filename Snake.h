@@ -29,7 +29,7 @@ class Snake : public List <Position*> {
             List<Position*>::add(info);
         }
         Position *getHead(){
-            return List<Position*>::head;
+            return List<Position*>::head->getInfo();
         }
         void print(){
             Node <Position*> *current = head;

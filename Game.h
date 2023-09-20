@@ -1,19 +1,24 @@
 #include <iostream>
 #include "Snake.h"
 #include "Board.h"
+#include <conio.h>
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <unistd.h>
+#endif
 
 class Game{
     private:
-        bool gameOver = false;
+        bool gameOver;
         Board *board;
         Snake<Position*> *snake;
-        int direction = 0;
-
+        char lastInput = ' ';
     public:
         Game(){
             board = new Board();
             spawnSnake();
-            
+            gameOver = false;
         }
 
         void spawnSnake(){
@@ -27,26 +32,85 @@ class Game{
         }
 
         Position *getNextPosition(){
-            return nullptr; // implement
+            if(kbhit()){
+                char c = getch();
+                switch(c){
+                    case 'w':{
+                        lastInput = 'w';
+                        return board->getBoardPosition(snake->getHead()->getRow() - 1, snake->getHead()->getColumn());
+                        break;
+                    }
+                    case 's':{
+                        lastInput = 's';
+                        return board->getBoardPosition(snake->getHead()->getRow() + 1, snake->getHead()->getColumn());
+                        break;
+                    }
+                    case 'a':{
+                        lastInput = 'a';
+                        return board->getBoardPosition(snake->getHead()->getRow(), snake->getHead()->getColumn() - 1);
+                        break;
+                    }
+                    case 'd':{
+                        lastInput = 'd';
+                        return board->getBoardPosition(snake->getHead()->getRow(), snake->getHead()->getColumn() + 1);
+                        break;
+                    }
+                    default :{
+                        return snake->getHead();
+                    }
+                }
+            }else if(lastInput != ' '){
+                    switch(lastInput){
+                        case 'w':{
+                            lastInput = 'w';
+                            return board->getBoardPosition(snake->getHead()->getRow() - 1, snake->getHead()->getColumn());
+                            break;
+                        }
+                        case 's':{
+                            lastInput = 's';
+                            return board->getBoardPosition(snake->getHead()->getRow() + 1, snake->getHead()->getColumn());
+                            break;
+                        }
+                        case 'a':{
+                            lastInput = 'a';
+                            return board->getBoardPosition(snake->getHead()->getRow(), snake->getHead()->getColumn() - 1);
+                            break;
+                        }
+                        case 'd':{
+                            lastInput = 'd';
+                            return board->getBoardPosition(snake->getHead()->getRow(), snake->getHead()->getColumn() + 1);
+                            break;
+                        }
+                        default :{
+                            return snake->getHead();
+                        }
+                    }
+            }
+            
+            return snake->getHead();
         }
 
-        void update(){
-            snake->move(board->getBoardPosition(0, 1));
-            cout << "move pra direita:" << endl;
-            board->print();
-            cout << "move pra direita:" << endl;
-            snake->move(board->getBoardPosition(0, 2));
-            board->print();
-            cout << "move upgrade:" << endl;
-            snake->move(board->getBoardPosition(0, 3));
-            snake->grow(board->getBoardPosition(0, 3));
-            board->print();
-            cout << "move pra direita:" << endl;
-            snake->move(board->getBoardPosition(0, 4));
-            snake->print();
-            board->print();
-            cout << "move pra direita:" << endl;
-            snake->move(board->getBoardPosition(0, 5));
-            board->print();
+        void start(){
+            while(!gameOver){ 
+                board->print(snake->getSize() - 1);
+                Sleep(75);
+                try{
+                    Position *nextPosition = getNextPosition();
+                    if(nextPosition != snake->getHead()){
+                        if(!snake->checkCrash(nextPosition)){
+                            if(nextPosition->getPositionType() == PositionType::UPGRADE){
+                                snake->grow(nextPosition);
+                                board->randomPositionUpgrade();
+                            }
+                            snake->move(nextPosition);
+
+                        }else gameOver = true;   
+                    }
+                }
+                catch(int e){
+                    if(e == 1) gameOver = true; 
+                }
+            }
+            cout << "GAME OVER" << endl;
         }
 };

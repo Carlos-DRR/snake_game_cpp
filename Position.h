@@ -21,11 +21,15 @@ class Position{
         int getRow(){
             return row;
         }
-
+        void setRow(int row){
+            this->row = row;
+        }
         int getColumn(){
             return column;
         }
-
+        void setColumn(int column){
+            this->column = column;
+        }
         PositionType getPositionType(){
             return positionType;
         }
@@ -35,8 +39,8 @@ class Position{
         }
 
         std::string toString(){
-            if(positionType == PositionType::EMPTY) return "-";
-            else if (positionType == PositionType::SNAKE_PART) return "@";
+            if(positionType == PositionType::EMPTY) return ".";
+            else if (positionType == PositionType::SNAKE_PART) return "O";
             else return "+";
         }
 
