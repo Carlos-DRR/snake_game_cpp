@@ -1,7 +1,7 @@
 #include "Util.h"
 #include "Position.h"
 #include <iostream>
-#define BOARD_SIZE 15
+#define BOARD_SIZE 20
 
 using namespace std;
 

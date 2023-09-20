@@ -24,7 +24,8 @@ class Game{
         void spawnSnake(){
             int row = Util::randomNumber(BOARD_SIZE);
             int col = Util::randomNumber(BOARD_SIZE);
-            while(board->getBoardPosition(row, col)->getPositionType() == PositionType::UPGRADE){
+            while(board->getBoardPosition(row, col)->getPositionType() == PositionType::UPGRADE ||
+                  board->getBoardPosition(row, col)->getPositionType() == PositionType::WALL){
                 row = Util::randomNumber(BOARD_SIZE);
                 col = Util::randomNumber(BOARD_SIZE);
             }
