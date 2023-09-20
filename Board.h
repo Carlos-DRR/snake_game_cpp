@@ -16,7 +16,10 @@ class Board{
         void initializeBoard(){
             for(int i = 0; i < BOARD_SIZE; i++){
                 for(int j = 0; j < BOARD_SIZE; j++){
-                    board[i][j] = new Position(i, j, PositionType::EMPTY);
+                    PositionType pType = PositionType::EMPTY;
+                    if(i == 0 || i == BOARD_SIZE - 1 || j == 0 || j == BOARD_SIZE - 1) 
+                        pType = PositionType::WALL;
+                    board[i][j] = new Position(i, j, pType);
                 }
             }
             randomPositionUpgrade();
@@ -25,7 +28,8 @@ class Board{
         void randomPositionUpgrade(){
             int randRow = Util::randomNumber(BOARD_SIZE);
             int randCol = Util::randomNumber(BOARD_SIZE);
-            while(board[randRow][randCol]->getPositionType() == PositionType::SNAKE_PART){
+            while(board[randRow][randCol]->getPositionType() == PositionType::SNAKE_PART ||
+                  board[randRow][randCol]->getPositionType() == PositionType::WALL){
                 randRow = Util::randomNumber(BOARD_SIZE);
                 randCol = Util::randomNumber(BOARD_SIZE);
             }
@@ -55,7 +59,7 @@ class Board{
             }
         }
         Position *getBoardPosition(int row, int col){
-            if(row > BOARD_SIZE - 1 || row < 0 || col > BOARD_SIZE - 1 || col < 0) throw 1;
+            //if(row > BOARD_SIZE - 1 || row < 0 || col > BOARD_SIZE - 1 || col < 0) throw 1;
             return board[row][col];
         }
 };

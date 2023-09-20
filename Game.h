@@ -94,21 +94,16 @@ class Game{
             while(!gameOver){ 
                 board->print(snake->getSize() - 1);
                 Sleep(75);
-                try{
-                    Position *nextPosition = getNextPosition();
-                    if(nextPosition != snake->getHead()){
-                        if(!snake->checkCrash(nextPosition)){
-                            if(nextPosition->getPositionType() == PositionType::UPGRADE){
-                                snake->grow(nextPosition);
-                                board->randomPositionUpgrade();
-                            }
-                            snake->move(nextPosition);
+                Position *nextPosition = getNextPosition();
+                if(nextPosition != snake->getHead()){
+                    if(!snake->checkCrash(nextPosition)){
+                        if(nextPosition->getPositionType() == PositionType::UPGRADE){
+                            snake->grow(nextPosition);
+                            board->randomPositionUpgrade();
+                        }
+                        snake->move(nextPosition);
 
-                        }else gameOver = true;   
-                    }
-                }
-                catch(int e){
-                    if(e == 1) gameOver = true; 
+                    }else gameOver = true;   
                 }
             }
             cout << "GAME OVER" << endl;

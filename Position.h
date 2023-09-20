@@ -39,9 +39,10 @@ class Position{
         }
 
         std::string toString(){
-            if(positionType == PositionType::EMPTY) return ".";
+            if(positionType == PositionType::EMPTY) return " ";
             else if (positionType == PositionType::SNAKE_PART) return "O";
-            else return "+";
+            if (positionType == PositionType::WALL) return "\"";
+            else return "$";
         }
 
 };

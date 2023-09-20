@@ -13,7 +13,7 @@ class Snake : public List <Position*> {
         }
 
         bool checkCrash(Position* info){
-            return info->getPositionType() == PositionType::SNAKE_PART;
+            return info->getPositionType() == PositionType::SNAKE_PART || info->getPositionType() == PositionType::WALL;
         }
 
         void move(Position* info){
