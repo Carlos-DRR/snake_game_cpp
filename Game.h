@@ -22,11 +22,11 @@ class Game{
         }
 
         void spawnSnake(){
-            int row = Util::randomNumber(10);
-            int col = Util::randomNumber(10);
+            int row = Util::randomNumber(BOARD_SIZE);
+            int col = Util::randomNumber(BOARD_SIZE);
             while(board->getBoardPosition(row, col)->getPositionType() == PositionType::UPGRADE){
-                row = Util::randomNumber(10);
-                col = Util::randomNumber(10);
+                row = Util::randomNumber(BOARD_SIZE);
+                col = Util::randomNumber(BOARD_SIZE);
             }
             snake = new Snake<Position*>(board->getBoardPosition(row, col));
         }

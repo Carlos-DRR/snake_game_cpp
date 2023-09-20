@@ -1,7 +1,7 @@
 #include "Util.h"
 #include "Position.h"
 #include <iostream>
-#define BOARD_SIZE 25
+#define BOARD_SIZE 15
 
 using namespace std;
 
@@ -23,11 +23,11 @@ class Board{
         }
 
         void randomPositionUpgrade(){
-            int randRow = Util::randomNumber(10);
-            int randCol = Util::randomNumber(10);
+            int randRow = Util::randomNumber(BOARD_SIZE);
+            int randCol = Util::randomNumber(BOARD_SIZE);
             while(board[randRow][randCol]->getPositionType() == PositionType::SNAKE_PART){
-                randRow = Util::randomNumber(10);
-                randCol = Util::randomNumber(10);
+                randRow = Util::randomNumber(BOARD_SIZE);
+                randCol = Util::randomNumber(BOARD_SIZE);
             }
             board[randRow][randCol]->setPositionType(PositionType::UPGRADE);
         }
